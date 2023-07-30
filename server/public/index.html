@@ -9,7 +9,7 @@
 <body>
     <h1>Weekend Server Calculator</h1>
 
-    <form>
+    <form onSubmit="submitForm(event)">
         <input id="firstNumber" placeholder="First Number" type="number" />
         <button id="addition">+</button>
         <button id="subtraction">-</button>
@@ -20,7 +20,7 @@
         <button id="clear">C</button>
     </form>
     <br>
-    <div id="equals">
+    <div id="mathEquals">
         <h2>Equals</h2>
     </div>
     <br>
