@@ -1,5 +1,16 @@
 console.log('Hello there!');
 
+function getMath() {
+    axios.get('/math').then((response) => {
+        console.log("success", response.data);
+        let mathFromServer = response.data;
+        return mathFromServer;
+    }).catch((error) => {
+        console.log(error);
+        alert("Something went wrong!");
+    });
+};
+getMath();
 
 function submitForm(event){
     event.preventDefault();
