@@ -13,6 +13,16 @@ app.get('/math', function(req, res){
     res.send(mathEquations);
 });
 
+app.post('/math', (req, res) => {
+    console.log('get a POST request', req.body);
+    // We are going to assign the request body to a variable
+    let newMath = req.body;
+    // pushing newMath into our mathEquations
+    mathEquations.push(newMath);
+    // we are responding to the client
+    res.sendStatus(201);
+})
+
 app.listen(port, function() { 
     console.log('listening on port', port);
 });

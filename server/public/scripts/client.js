@@ -23,4 +23,16 @@ function submitForm(event){
         num2: num2
     }
     console.log(mathToAdd);
+    axios.post('/math', mathToAdd).then((response) => {
+        console.log(response);
+        // Here we are pulling our id's from the html page and setting the input value
+        // to an empty string.
+        document.querySelector('#firstNumber').value = '';
+        document.querySelector('.operator').value = '';
+        document.querySelector('#secondNumber').value = '';
+    getMath();
+    }).catch((error) => {
+    console.log(error);
+    alert('Something went wrong');
+});
 };
