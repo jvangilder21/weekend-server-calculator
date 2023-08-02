@@ -21,6 +21,22 @@ app.post('/math', (req, res) => {
     mathEquations.push(newMath);
     // we are responding to the client
     res.sendStatus(201);
+// switch (operator) {
+//     case '+':
+//         result = num1 + num2;
+//         break;
+//     case '-':
+//         result = num1 - num2;
+//         break;
+//     case '*':
+//         result = num1 * num2;
+//         break;
+//     case '/':
+//         result = num1 / num2;
+//         break;
+//     default:
+//         result = 'Invalid operator';
+//     };
 })
 
 app.listen(port, function() { 

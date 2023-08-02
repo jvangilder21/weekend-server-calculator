@@ -11,10 +11,10 @@
 
     <form onSubmit="submitForm(event)">
         <input id="firstNumber" placeholder="First Number" type="number" required/>
-        <button class="operator" id="addition">+</button>
-        <button class="operator" id="subtraction">-</button>
-        <button class="operator" id="multiplication">*</button>
-        <button class="operator" id="division">/</button>
+        <button onclick="calculator(event)" type="button" value="+" id="addition">+</button>
+        <button onclick="calculator(event)" type="button" value="-" id="subtraction">-</button>
+        <button onclick="calculator(event)" type="button" value="*" id="multiplication">*</button>
+        <button onclick="calculator(event)" type="button" value="/" id="division">/</button>
         <input id="secondNumber" placeholder="Second Number" type="number" required/>
         <button onclick="getMath()" id="equals">=</button>
         <button id="clear">C</button>
@@ -26,6 +26,7 @@
     <br>
     <div id="equations">
         <h2>Equations</h2>
+        <ul id="equationList"></ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
