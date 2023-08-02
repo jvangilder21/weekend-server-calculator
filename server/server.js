@@ -24,9 +24,9 @@ app.post('/math', (req, res) => {
     res.sendStatus(201);
 
     let num1 = Number(req.body.num1);
-    let num2 = Number(req.body.num2)
-    let chosenSign = (req.body.chosenSign)
-    // let result = 0;
+    let num2 = Number(req.body.num2);
+    let chosenSign = (req.body.chosenSign);
+    
 
     switch (chosenSign) {
         case '+':

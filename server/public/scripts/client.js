@@ -64,5 +64,3 @@ function submitForm(event){
 });
 };
 
-// Fetch and render math history when the page loads
-//getMath();
