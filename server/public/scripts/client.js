@@ -20,7 +20,7 @@ function getMath() {
         mathDiv.innerHTML = "";
         for (let math of mathFromServer){
             mathDiv.innerHTML += `
-            <p> ${math.num1} ${math.chosenSign} ${math.num2}</p>
+            <p> ${math.num1} ${math.chosenSign} ${math.num2} = </p>
             `;
         }
     }).catch((error) => {
@@ -30,45 +30,23 @@ function getMath() {
 };
 //getMath();
 
-// Event listener for the "=" button
-//document.getElementById('equals').addEventListener('click', submitForm);
-
 
 function submitForm(event){
     event.preventDefault();
     // num1 & 2 are pulling the values added to out input in the html
-    let num1 = document.querySelector('#firstNumber').value;
+    let num1 = Number(document.querySelector('#firstNumber').value);
     //console.log(num1);
-    let num2 = document.querySelector('#secondNumber').value;
+    let num2 = Number(document.querySelector('#secondNumber').value);
     //console.log(num2);
+    // let result = 0;
 
     let mathToAdd = {
         num1: num1,
         num2: num2,
         chosenSign: chosenSign,
-        //result: result,
+        // result: result,
     };
     console.log(mathToAdd);
-
-    // let mathAdded = num1 + chosenSign + num2;
-    // console.log('math added vari', mathAdded);
-
-    // switch (operator) {
-    // case '+':
-    //     result = num1 + num2;
-    //     break;
-    // case '-':
-    //     result = num1 - num2;
-    //     break;
-    // case '*':
-    //     result = num1 * num2;
-    //     break;
-    // case '/':
-    //     result = num1 / num2;
-    //     break;
-    // default:
-    //     result = 'Invalid operator';
-    // };
     
     
     axios.post('/math', mathToAdd).then((response) => {
@@ -78,6 +56,7 @@ function submitForm(event){
         document.querySelector('#firstNumber').value = '';
         //document.querySelector('').value = '';
         document.querySelector('#secondNumber').value = '';
+
     getMath();
     }).catch((error) => {
     console.log(error);

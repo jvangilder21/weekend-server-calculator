@@ -5,6 +5,7 @@ const port = 5001;
 app.use(express.json());
 
 let mathEquations = [];
+let resultAnswer = "";
 
 app.use(express.static('server/public'));
 
@@ -21,23 +22,32 @@ app.post('/math', (req, res) => {
     mathEquations.push(newMath);
     // we are responding to the client
     res.sendStatus(201);
-// switch (operator) {
-//     case '+':
-//         result = num1 + num2;
-//         break;
-//     case '-':
-//         result = num1 - num2;
-//         break;
-//     case '*':
-//         result = num1 * num2;
-//         break;
-//     case '/':
-//         result = num1 / num2;
-//         break;
-//     default:
-//         result = 'Invalid operator';
-//     };
-})
+
+    let num1 = Number(req.body.num1);
+    let num2 = Number(req.body.num2)
+    let chosenSign = (req.body.chosenSign)
+    // let result = 0;
+
+    switch (chosenSign) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            result = num1 / num2;
+            break;
+        default:
+            result = 'Invalid operator';
+        };
+        console.log(result);
+        resultAnswer = result;
+        console.log('Our result answer is:', resultAnswer);
+});
 
 app.listen(port, function() { 
     console.log('listening on port', port);
