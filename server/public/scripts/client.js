@@ -5,7 +5,7 @@ let subOperator = document.querySelector('#subtraction').value;
 let multiOperator = document.querySelector('#multiplication').value;
 let divOperator = document.querySelector('#division').value;
 let chosenSign = '';
-
+let finalMath = '';
 
 function calculator(event){
     //console.log(event.target.innerHTML);
@@ -20,9 +20,14 @@ function getMath() {
         mathDiv.innerHTML = "";
         for (let math of mathFromServer){
             mathDiv.innerHTML += `
-            <p> ${math.num1} ${math.chosenSign} ${math.num2} = </p>
+            <p> ${math.num1} ${math.chosenSign} ${math.num2} = ${math.resultAnswer}</p>
             `;
         }
+        // for (let math of mathFromServer){
+        //     mathDiv.innerHTML += `
+        //     <p> ${math.num1} ${math.chosenSign} ${math.num2} = ${finalMath}</p>
+        //     `;
+        // }
     }).catch((error) => {
         console.log(error);
         alert("Something went wrong!");
@@ -30,6 +35,17 @@ function getMath() {
 };
 //getMath();
 
+function getMathCalultion() {
+    axios.get('/calculation').then((response) => {
+        console.log("success", response.data);
+        let mathFromServer = response.data;
+        finalMath = mathFromServer;
+        getMath();
+    }).catch((error) => {
+        console.log(error);
+        alert("Something went wrong!");
+    });
+};
 
 function submitForm(event){
     event.preventDefault();
@@ -47,7 +63,7 @@ function submitForm(event){
         // result: result,
     };
     console.log(mathToAdd);
-    
+
     
     axios.post('/math', mathToAdd).then((response) => {
         console.log(response);
@@ -58,6 +74,7 @@ function submitForm(event){
         document.querySelector('#secondNumber').value = '';
 
     getMath();
+    //getMathCalultion();
     }).catch((error) => {
     console.log(error);
     alert('Something went wrong');
